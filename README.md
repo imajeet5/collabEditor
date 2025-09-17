@@ -5,12 +5,19 @@ A real-time collaborative text editor built with React.js (frontend) and Node.js
 ## Features
 
 ### Core Features
-- **Real-time Collaboration**: Multiple users can edit documents simultaneously
+- **Rich Text Editing**: Powered by Slate.js with formatting toolbar and keyboard shortcuts
+- **Real-time Collaboration**: Multiple users can edit documents simultaneously (foundation ready)
 - **User Sessions**: Secure session management with auto-expiry
 - **Document Management**: Create, read, update, and delete documents
 - **Auto-save**: Automatic saving of document changes with debouncing
 - **Persistent Storage**: MongoDB database with Docker containerization
 - **Responsive Design**: Clean, modern UI built with Tailwind CSS
+
+### Rich Text Features
+- **Text Formatting**: Bold, italic, underline, and inline code
+- **Block Elements**: Headings, blockquotes, numbered/bulleted lists
+- **Keyboard Shortcuts**: Ctrl+B (bold), Ctrl+I (italic), Ctrl+U (underline), Ctrl+` (code)
+- **Extensible Editor**: Built on Slate.js framework for future collaboration features
 
 ### Security Features
 - CORS protection with configurable origins
@@ -31,6 +38,7 @@ A real-time collaborative text editor built with React.js (frontend) and Node.js
 
 ### Frontend
 - **React 18**: Modern React with hooks and context
+- **Slate.js**: Rich text editing framework optimized for collaborative editing
 - **Tailwind CSS**: Utility-first CSS framework
 - **Axios**: HTTP client for API calls
 - **React Router**: Client-side routing

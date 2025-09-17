@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useUser } from '../context/UserContext';
 import { documentAPI } from '../services/api';
+import SlateEditor from './SlateEditor';
 import { 
   Save, 
   ArrowLeft, 
@@ -136,12 +137,11 @@ const TextEditor = ({ document: initialDocument, onBack }) => {
     autoSave();
   };
 
-  // Handle content change
-  const handleContentChange = (e) => {
-    const newContent = e.target.value;
-    setContent(newContent);
+  // Handle content change from Slate editor
+  const handleContentChange = useCallback((plainText) => {
+    setContent(plainText);
     setHasUnsavedChanges(true);
-  };
+  }, []);
 
   // Handle title change
   const handleTitleChange = (e) => {
@@ -326,12 +326,10 @@ const TextEditor = ({ document: initialDocument, onBack }) => {
       {/* Editor */}
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
         <div className="bg-white rounded-lg shadow-sm border h-full">
-          <textarea
+          <SlateEditor
             value={content}
             onChange={handleContentChange}
-            className="w-full h-full min-h-[600px] p-6 border-none outline-none resize-none font-mono text-sm leading-relaxed"
             placeholder="Start typing your document content here..."
-            spellCheck="true"
           />
         </div>
       </main>
@@ -341,7 +339,7 @@ const TextEditor = ({ document: initialDocument, onBack }) => {
         <div className="max-w-7xl mx-auto">
           <div className="text-xs text-gray-500 flex items-center justify-between">
             <span>
-              Auto-save enabled • Press Ctrl+S (Cmd+S) to save manually
+              Auto-save enabled • Press Ctrl+S (Cmd+S) to save • Ctrl+B (Bold), Ctrl+I (Italic), Ctrl+U (Underline)
             </span>
             <span>
               Words: {content.split(/\s+/).filter(word => word.length > 0).length} • 
